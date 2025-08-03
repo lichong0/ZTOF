@@ -1,0 +1,45 @@
+def closed_loop_refinement(images, initial_texts, clip_model, llm, num_rounds=4):
+    """
+    Iteratively optimize text descriptions to improve alignment with image features
+    
+    Parameters: 
+ images: input image tensor (batch_size x 3 x H x W) 
+ initial_texts: initial list of category descriptions (length = number of categories) 
+ clip_model: loaded CLIP model (used to compute alignment scores) 
+ llm: initialized large language model (Qwen 2.5-7B, used for text optimization) 
+ num _rounds: number of optimization rounds (default: 4)
+    
+    Returns: 
+ refined_texts: description of optimized texts after all rounds 
+ alignment_history: list of average alignment scores for each round 
+ """
+    refined_texts = initial_texts.copy()
+    alignment_history = []
+    
+    for round in range(num_rounds):
+        # Step 1: Calculate Alignment Score with CLIP
+        with torch.no_grad():
+            image_features = clip_model.encode_image(images)
+            text_features = clip_model.encode_text(refined_texts)
+            alignment_scores = clip_model.similarity(image_features, text_features)
+            mean_score = alignment_scores.mean().item()
+            alignment_history.append(mean_score)
+            print(f"Round {round+1} - Mean Alignment Score: {mean_score:.4f}")
+        
+        # Step 2: Identify underperforming categories and optimize text
+        
+        for idx in torch.where(alignment_scores < low_threshold)[0]:
+            feedback = (
+                \n" 
+ f "Current text for category {idx}: '{refined_texts[idx]}'\n" f "This text is poorly aligned to image features (score: {alignment_scores[idx]:.4f}). \n" 
+ "Please optimize the description to emphasize fine-grained visual features (e.g., color, texture, shape, specific components)," 
+ "so that it can be distinguished from similar categories. Keep descriptions concise (1-2 sentences)."
+            )
+            
+            refined_texts[idx] = llm.generate(
+                prompt=feedback,
+                max_length=100,
+                temperature=0.7 
+            )
+    
+    return refined_texts, alignment_history
