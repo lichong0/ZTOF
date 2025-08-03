@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate WCA
+source activate ZTOF
 # python -u main.py --dataset_name oxford_pet --num_workers 8
 # python -u main_cub.py --dataset_name cub --num_workers 8
 # python -u main_pet.py --dataset_name oxford_pet --num_workers 8
