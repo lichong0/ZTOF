@@ -2,15 +2,15 @@
 Implementation code for the ZTOF framework.
 # From Zero to One: Accelerating Recognition Model Construction via Self-Optimizing Prototyping Mechanism
 
-Welcome to the official GitHub repository for **ZTOF** (Zero-Shot Text Optimization Framework), a novel approach for enhancing fine-grained visual recognition through closed-loop image-text alignment optimization. This repository contains the source code, datasets, and supplementary materials for our research.
+Welcome to the official GitHub repository for **ZTOF** (From Zero to One Framework), a framework designed for rapid prototyping of visual recognition models
 
 
 ## 📌 Overview
-ZTOF addresses the challenge of distinguishing visually similar categories (e.g., food items, bird species, or insect morphologies) by iteratively refining text descriptions and aligning them with visual features. By leveraging CLIP for vision-language alignment and large language models (LLMs) for text refinement, our framework achieves state-of-the-art performance on fine-grained recognition tasks.
+ZTOF proposes a self-optimizing mechanism that establishes a feedback loop between a large language model (LLM) and a pre-trained vision-language alignment model. By combining the knowledge reasoning capability of the LLM with perceptual feedback from the alignment model, ZTOF automatically generates and improves category-level textual descriptions without requiring manual annotations.
 
 ### Key Features:
 - **Closed-Loop Optimization**: Iteratively improves text descriptions to better match visual features.
-- **Fine-Grained Discrimination**: Effectively distinguishes between visually similar categories (e.g., pho vs. hot and sour soup).
+- **Fine-Grained Discrimination**: Effectively distinguishes between visually similar categories.
 - **Generalization**: Works across diverse datasets (Food-101, CUB-200-2011, Pet Dataset, and private mosquito datasets).
   
 ## 📊 Dataset Description
@@ -20,7 +20,7 @@ ZTOF addresses the challenge of distinguishing visually similar categories (e.g.
 - **CUB-200-2011** https://www.robots.ox.ac.uk/~vgg/data/pets/
 - **Pet Dataset** https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/
 ### Private Dataset
-A partial sample (20 images) of our private mosquito dataset is available in `datasets/private_mosquito_samples/`, with sensitive metadata (collection locations and timestamps) removed. The complete dataset contains 700 images across 30 mosquito species, focusing on key morphological features (wing veins, body shape, etc.).
+A partial sample (20 images) of our private mosquito dataset is available in `data/mosquito`, with sensitive metadata (collection locations and timestamps) removed. The complete dataset contains 700 images across 30 mosquito species, focusing on key morphological features (wing veins, body shape, etc.)
 
 ## 📁 Repository Structure
 
