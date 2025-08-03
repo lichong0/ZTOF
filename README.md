@@ -1,6 +1,6 @@
 # ZTOF
 Implementation code for the ZTOF framework.
-# ZTOF: A Closed-Loop Optimization Framework for Fine-Grained Visual Recognition
+# From Zero to One: Accelerating Recognition Model Construction via Self-Optimizing Prototyping Mechanism
 
 Welcome to the official GitHub repository for **ZTOF** (Zero-Shot Text Optimization Framework), a novel approach for enhancing fine-grained visual recognition through closed-loop image-text alignment optimization. This repository contains the source code, datasets, and supplementary materials for our research.
 
